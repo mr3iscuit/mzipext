@@ -1,10 +1,10 @@
-package mergeable
+package commands__mergeable
 
 import (
 	"archive/zip"
 	"fmt"
 
-	zip_content "github.com/mr3iscuit/mzipext/zip-content"
+	"github.com/mr3iscuit/mzipext/zip_content"
 )
 
 type ErrRepeatedZipFile struct {
@@ -36,7 +36,7 @@ func (e *ErrZipFileConfict) Error() string {
 			detailMsg += fmt.Sprintf(
 				"\n\t\tFound in : %s, Size: %d bytes",
 				conflict.ZipName,
-				conflict.FileHeader.UncompressedSize64,
+				conflict.File.UncompressedSize64,
 			)
 		}
 	}
@@ -86,12 +86,13 @@ func Mergeable(files []string) (bool, error) {
 	}
 
 	zipContents := make(
-		[]zip_content.ZipContent,
-		len(files),
+		[]*zip_content.ZipContent,
+		0,
 	)
 
 	for _, path := range files {
-		zipContent, err := zip_content.PeekZipContent(path)
+		zipContent, err := zip_content.NewZipContent(path)
+		defer zipContent.CloseZip()
 		if err != nil {
 			return false, err
 		}
@@ -114,11 +115,11 @@ func Mergeable(files []string) (bool, error) {
 }
 
 type ZipAndZipFile struct {
-	ZipName    string
-	FileHeader zip.FileHeader
+	ZipName string
+	File    *zip.File
 }
 
-func hasFileConflict(zips []zip_content.ZipContent) (bool, map[string][]ZipAndZipFile) {
+func hasFileConflict(zips []*zip_content.ZipContent) (bool, map[string][]ZipAndZipFile) {
 	fileSeen := make(
 		map[string][]ZipAndZipFile,
 		0,
@@ -142,7 +143,7 @@ func hasFileConflict(zips []zip_content.ZipContent) (bool, map[string][]ZipAndZi
 
 			val = append(
 				val,
-				ZipAndZipFile{contents.FilePath, file},
+				ZipAndZipFile{contents.ZipPath, file},
 			)
 
 			fileSeen[file.Name] = val

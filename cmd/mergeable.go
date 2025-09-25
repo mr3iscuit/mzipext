@@ -2,9 +2,9 @@ package cmd
 
 import (
 	"fmt"
+	commands__mergeable "github.com/mr3iscuit/mzipext/commands/mergeable"
 
 	"github.com/mr3iscuit/mzipext/constants"
-	mergeable "github.com/mr3iscuit/mzipext/mergeable_cmd"
 	"github.com/spf13/cobra"
 )
 
@@ -20,7 +20,7 @@ var mergeableCmd = &cobra.Command{
 	) error {
 		zipFiles := cmd.Flags().Args()
 
-		ok, err := mergeable.Mergeable(zipFiles)
+		ok, err := commands__mergeable.Mergeable(zipFiles)
 		if err != nil {
 			return err
 		}

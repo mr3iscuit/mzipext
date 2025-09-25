@@ -1,7 +1,7 @@
 package constants
 
 var (
-	RootCommandUse   = "gdextract"
+	RootCommandUse   = "mzipext"
 	RootCommandShort = "tool description"
 	RootCommandLong  = "long tool desc"
 
@@ -13,4 +13,9 @@ var (
 	checks if zip1 and zip2 are mergeable.
 	zip1 and zip2 must be valid zip files.
 	`
+
+	MergeExtractCmdUse     = "merge-extract"
+	MergeExtractCmdShort   = "extract zip files and merge into directory"
+	MergeExtractCmdLong    = ""
+	MergeExtractCmdExample = "mzipext --input-dir \"My Zips Folder\" --output-dir \"My Folder\" this.zip that.zip"
 )
