@@ -93,11 +93,6 @@ func ExtractFile(
 			0755,
 		)
 
-		fmt.Printf(
-			"Just a directory. Dest dir made: %s\n",
-			filePath,
-		)
-
 		return err
 	}
 
@@ -113,12 +108,6 @@ func ExtractFile(
 			err,
 		)
 	}
-
-	fmt.Printf(
-		"Dest dir made: %s\nFile path is %s\n",
-		destDir,
-		filePath,
-	)
 
 	// create the destination file
 	outFile, err := os.OpenFile(
@@ -155,49 +144,4 @@ func ExtractFile(
 
 func (z *ZipContent) IsSameZip(zipContent ZipContent) bool {
 	return z.Checksum == zipContent.Checksum
-}
-
-func PeekZipContent(filePath string) (ZipContent, error) {
-	zipReader, err := zip.OpenReader(filePath)
-	if err != nil {
-		return ZipContent{}, err
-	}
-	defer zipReader.Close()
-
-	files := make(
-		[]*zip.File,
-		0,
-	)
-
-	for _, f := range zipReader.File {
-		if f.FileInfo().Name() == "" && f.FileInfo().Size() == 0 {
-			continue
-		}
-		files = append(
-			files,
-			f,
-		)
-	}
-
-	file, err := os.Open(filePath)
-	if err != nil {
-		return ZipContent{}, err
-	}
-	defer file.Close()
-
-	hash := sha256.New()
-	if _, err := io.Copy(
-		hash,
-		file,
-	); err != nil {
-		return ZipContent{}, err
-	}
-
-	checksum := hex.EncodeToString(hash.Sum(nil))
-
-	return ZipContent{
-		ZipPath:  filePath,
-		Checksum: checksum,
-		Files:    files,
-	}, nil
 }

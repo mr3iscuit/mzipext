@@ -18,8 +18,6 @@ var mergeExtractCmd = &cobra.Command{
 		cmd *cobra.Command,
 		args []string,
 	) error {
-		fmt.Println("mergeExtract called")
-
 		inputDir, _ := cmd.Flags().GetString("input-dir")
 		outputDir, _ := cmd.Flags().GetString("output-dir")
 
