@@ -28,13 +28,13 @@ func (e *ErrZipFileConfict) Error() string {
 	detailMsg := ""
 	for name, conflicts := range e.ConflictDetails {
 		detailMsg += fmt.Sprintf(
-			"\n\tFile: %s found in multiple Zip files.",
+			"\n\tFile: \"%s\"",
 			name,
 		)
 
 		for _, conflict := range conflicts {
 			detailMsg += fmt.Sprintf(
-				"\n\t\tFound in : %s, Size: %d bytes",
+				"\n\t\tFound in: \"%s\", File size: %d bytes",
 				conflict.ZipName,
 				conflict.File.UncompressedSize64,
 			)
