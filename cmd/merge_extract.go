@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"fmt"
-	commands__merge_extract "github.com/mr3iscuit/mzipext/commands/merge_extract"
 	"github.com/mr3iscuit/mzipext/constants"
+	commands__merge_extract "github.com/mr3iscuit/mzipext/pkg/zip"
 
 	"github.com/spf13/cobra"
 )

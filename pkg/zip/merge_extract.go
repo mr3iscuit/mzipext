@@ -1,8 +1,7 @@
-package commands__merge_extract
+package zip
 
 import (
 	"fmt"
-	commands__mergeable "github.com/mr3iscuit/mzipext/commands/mergeable"
 	"github.com/mr3iscuit/mzipext/zip_content"
 	"os"
 	"path/filepath"
@@ -47,7 +46,7 @@ func MergeExtract(
 	}
 
 	// check if zip files are mergeable
-	_, err := commands__mergeable.Mergeable(files)
+	_, err := Mergeable(files)
 	if err != nil {
 		return err
 	}

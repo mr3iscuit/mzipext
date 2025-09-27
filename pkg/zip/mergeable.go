@@ -1,4 +1,4 @@
-package commands__mergeable
+package zip
 
 import (
 	"archive/zip"

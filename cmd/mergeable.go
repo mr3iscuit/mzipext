@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	commands__mergeable "github.com/mr3iscuit/mzipext/commands/mergeable"
+	commands__mergeable "github.com/mr3iscuit/mzipext/pkg/zip"
 
 	"github.com/mr3iscuit/mzipext/constants"
 	"github.com/spf13/cobra"
