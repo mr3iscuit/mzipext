@@ -2,7 +2,7 @@ package cli
 
 import (
 	"fmt"
-	commands__merge_extract "github.com/mr3iscuit/mzipext/pkg/zip"
+	"github.com/mr3iscuit/mzipext/pkg/zip"
 
 	"github.com/spf13/cobra"
 )
@@ -27,7 +27,7 @@ var mergeExtractCmd = &cobra.Command{
 			)
 		}
 
-		err := commands__merge_extract.MergeExtract(
+		err := zip.MergeExtract(
 			inputDir,
 			outputDir,
 			cmd.Flags().Args(),

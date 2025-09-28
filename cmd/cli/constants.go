@@ -1,9 +1,10 @@
 package cli
 
 var (
-	RootCommandUse   = "mzipext"
-	RootCommandShort = "tool description"
-	RootCommandLong  = "long tool desc"
+	RootCommandUse     = "mzipext"
+	RootCommandShort   = "tool description"
+	RootCommandLong    = "long tool desc"
+	RootCommandVersion = "v1.0.0"
 
 	MergeableCmdUse   = "mergeable"
 	MergeableCmdShort = "check if zip files are mergeable"

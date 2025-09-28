@@ -10,9 +10,16 @@ var rootCmd = &cobra.Command{
 	Use:   RootCommandUse,
 	Short: RootCommandShort,
 	Long:  RootCommandLong,
-	// RunE: func(cmd *cobra.Command, args []string) error {
-	// 	return nil
-	// },
+	RunE: func(
+		cmd *cobra.Command,
+		args []string,
+	) error {
+		if v, _ := cmd.Flags().GetBool("version"); v {
+			cmd.Println(RootCommandUse + " version " + RootCommandVersion)
+			os.Exit(0)
+		}
+		return nil
+	},
 }
 
 func Execute() {
@@ -23,4 +30,10 @@ func Execute() {
 }
 
 func init() {
+	rootCmd.Flags().BoolP(
+		"version",
+		"v",
+		false,
+		"version",
+	)
 }

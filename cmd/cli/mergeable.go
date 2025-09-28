@@ -1,9 +1,7 @@
 package cli
 
 import (
-	"fmt"
-	commands__mergeable "github.com/mr3iscuit/mzipext/pkg/zip"
-
+	"github.com/mr3iscuit/mzipext/pkg/zip"
 	"github.com/spf13/cobra"
 )
 
@@ -19,13 +17,20 @@ var mergeableCmd = &cobra.Command{
 	) error {
 		zipFiles := cmd.Flags().Args()
 
-		ok, err := commands__mergeable.Mergeable(zipFiles)
+		inputDir, _ := cmd.Flags().GetString("input-dir")
+		outputDir, _ := cmd.Flags().GetString("output-dir")
+
+		ok, err := zip.Mergeable(
+			zipFiles,
+			inputDir,
+			outputDir,
+		)
 		if err != nil {
 			return err
 		}
 
 		if ok {
-			fmt.Printf("Files can be merged")
+			cmd.Println("Files can be merged")
 		}
 
 		return nil
@@ -34,4 +39,14 @@ var mergeableCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(mergeableCmd)
+	mergeableCmd.Flags().String(
+		"output-dir",
+		"./",
+		"",
+	)
+	mergeableCmd.Flags().String(
+		"input-dir",
+		"",
+		"",
+	)
 }
