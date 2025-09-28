@@ -4,14 +4,13 @@ import (
 	"fmt"
 	commands__mergeable "github.com/mr3iscuit/mzipext/pkg/zip"
 
-	"github.com/mr3iscuit/mzipext/constants"
 	"github.com/spf13/cobra"
 )
 
 var mergeableCmd = &cobra.Command{
-	Use:          constants.MergeableCmdUse,
-	Short:        constants.MergeableCmdShort,
-	Long:         constants.MergeableCmdLong,
+	Use:          MergeableCmdUse,
+	Short:        MergeableCmdShort,
+	Long:         MergeableCmdLong,
 	SilenceUsage: true,
 
 	RunE: func(

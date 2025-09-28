@@ -1,4 +1,4 @@
-package constants
+package cli
 
 var (
 	RootCommandUse   = "mzipext"

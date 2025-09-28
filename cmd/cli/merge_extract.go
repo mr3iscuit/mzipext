@@ -2,7 +2,6 @@ package cli
 
 import (
 	"fmt"
-	"github.com/mr3iscuit/mzipext/constants"
 	commands__merge_extract "github.com/mr3iscuit/mzipext/pkg/zip"
 
 	"github.com/spf13/cobra"
@@ -10,10 +9,10 @@ import (
 
 // mergeExtractCmd represents the mergeExtract command
 var mergeExtractCmd = &cobra.Command{
-	Use:     constants.MergeExtractCmdUse,
-	Short:   constants.MergeExtractCmdShort,
-	Long:    constants.MergeExtractCmdLong,
-	Example: constants.MergeExtractCmdExample,
+	Use:     MergeExtractCmdUse,
+	Short:   MergeExtractCmdShort,
+	Long:    MergeExtractCmdLong,
+	Example: MergeExtractCmdExample,
 	RunE: func(
 		cmd *cobra.Command,
 		args []string,

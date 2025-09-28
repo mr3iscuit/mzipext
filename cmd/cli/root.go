@@ -3,14 +3,13 @@ package cli
 import (
 	"os"
 
-	"github.com/mr3iscuit/mzipext/constants"
 	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
-	Use:   constants.RootCommandUse,
-	Short: constants.RootCommandShort,
-	Long:  constants.RootCommandLong,
+	Use:   RootCommandUse,
+	Short: RootCommandShort,
+	Long:  RootCommandLong,
 	// RunE: func(cmd *cobra.Command, args []string) error {
 	// 	return nil
 	// },
